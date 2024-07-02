@@ -1,3 +1,19 @@
 .next
 node_modules
 .yarn
+# Include PnP files
+!.pnp.cjs
+
+# Delete dynamic PnP files
+.pnp.loader.mjs
+
+# Incluir arquivos importantes do Yarn Berry
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+
+# Delete dynamic PnP files
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
