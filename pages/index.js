@@ -7,6 +7,10 @@ function Home() {
         <h1>O curupira sabe!</h1>
         <img src="/assets/edilson.gif" alt="Descrição do GIF" />
       </div>
+      <div>
+        <h1>Trabalhe enquanto eles dormem...</h1>
+        <img src="assets/cardoso.jpeg" alt="Descrição do GIF" />
+      </div>
     </div>
   );
 }
