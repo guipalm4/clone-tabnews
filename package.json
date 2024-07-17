@@ -4,7 +4,7 @@
   "description": "Implementação do zero a produção do site https://tabnews.com.br",
   "main": "index.js",
   "scripts": {
-    "dev": "yarn services:up && next dev",
+    "dev": "yarn services:up && yarn check:postgres && yarn migration:up && next dev",
     "services:up": "docker compose -f infra/compose.yaml up -d",
     "services:stop": "docker compose -f infra/compose.yaml stop",
     "services:down": "docker compose -f infra/compose.yaml down",
@@ -14,7 +14,8 @@
     "test:watch": "jest --runInBand --watchAll",
     "migration:create": "node-pg-migrate --migrations-dir infra/migrations create",
     "migration:up": "node-pg-migrate -m infra/migrations --envPath .env.development up",
-    "migration:down": "node-pg-migrate -m infra/migrations --envPath .env.development down"
+    "migration:down": "node-pg-migrate -m infra/migrations --envPath .env.development down",
+    "check:postgres": "node infra/scripts/wait-for-postgres.js"
   },
   "repository": {
     "type": "git",
