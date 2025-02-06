@@ -1,4 +1,6 @@
 import retry from "async-retry";
+import database from "infra/database";
+
 async function waitForAllService() {
   await waitForWebServer();
 
@@ -18,6 +20,13 @@ async function waitForAllService() {
   }
 }
 
-const orchestrator = { waitForAllService };
+async function clearDatabase() {
+  await database.query("DROP SCHEMA public cascade; CREATE SCHEMA public;");
+}
+
+const orchestrator = {
+  waitForAllService,
+  clearDatabase,
+};
 
 export default orchestrator;
