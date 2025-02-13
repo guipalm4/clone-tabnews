@@ -4,13 +4,13 @@ async function query(queryObject) {
   let client;
   try {
     client = await getNewClient();
-    const result = await client.query(queryObject);
-    return result;
+    return await client.query(queryObject);
   } catch (error) {
+    console.log("\n Error inside catch database.js:");
     console.error("Error executing query:", error.stack);
     throw error;
   } finally {
-    await client.end();
+    await client?.end();
   }
 }
 
@@ -21,7 +21,7 @@ async function getNewClient() {
     database: process.env.POSTGRES_DB,
     user: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
-    ssl: process.env.NODE_ENV === "production" ? true : false,
+    ssl: process.env.NODE_ENV === "production",
   });
 
   await client.connect();
